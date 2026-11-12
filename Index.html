@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Comercial — NAKA Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --preto: #0D0D0D;
+  --carvao: #262626;
+  --offwhite: #F4F3EF;
+  --cinza: #8C8C8C;
+  --bronze: #916A41;
+  --bronze-light: #B8885A;
+  --branco: #FFFFFF;
+  --verde: #263326;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--preto);
+  color: var(--offwhite);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+/* ── CAPA ── */
+.capa {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.capa::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(145,106,65,0.06) 0%, transparent 50%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.capa-logo {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.capa h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.2;
+  color: var(--offwhite);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.capa h1 em {
+  font-style: italic;
+  color: var(--bronze);
+}
+
+.capa-subtitle {
+  font-size: 1rem;
+  color: var(--cinza);
+  letter-spacing: 0.05em;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.capa-meta {
+  display: flex;
+  gap: 40px;
+  font-size: 0.8rem;
+  color: var(--cinza);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.capa-meta span { display: flex; flex-direction: column; gap: 4px; }
+.capa-meta strong { color: var(--offwhite); font-weight: 600; }
+
+.capa-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--bronze);
+  margin: 32px auto;
+  position: relative;
+  z-index: 1;
+}
+
+.capa-cliente {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--offwhite);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 12px;
+}
+
+.capa-segmento {
+  font-size: 0.85rem;
+  color: var(--cinza);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── NAV ── */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,13,13,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(145,106,65,0.15);
+  padding: 0 32px;
+}
+
+.nav-bar .container {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  height: 52px;
+  overflow-x: auto;
+}
+
+.nav-bar a {
+  color: var(--cinza);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.nav-bar a:hover { color: var(--bronze); }
+
+.nav-brand {
+  font-weight: 700;
+  color: var(--offwhite) !important;
+  letter-spacing: 0.25em !important;
+  margin-right: auto;
+}
+
+/* ── SECTIONS ── */
+section {
+  padding: 80px 0;
+  border-top: 1px solid rgba(145,106,65,0.08);
+}
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--offwhite);
+  margin-bottom: 32px;
+}
+
+.section-title em { font-style: italic; color: var(--bronze); }
+
+/* ── QUEM SOMOS ── */
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.sobre-texto { font-size: 0.95rem; color: var(--offwhite); opacity: 0.85; }
+.sobre-texto p + p { margin-top: 16px; }
+
+.sobre-stats { display: flex; flex-direction: column; gap: 32px; }
+
+.stat-item {
+  border-left: 2px solid var(--bronze);
+  padding-left: 20px;
+}
+
+.stat-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  color: var(--bronze);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--cinza);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── DIAGNÓSTICO ── */
+.diag-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.diag-card {
+  background: var(--carvao);
+  border: 1px solid rgba(145,106,65,0.12);
+  border-radius: 8px;
+  padding: 32px 24px;
+}
+
+.diag-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(145,106,65,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.diag-card h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--offwhite);
+}
+
+.diag-card p {
+  font-size: 0.85rem;
+  color: var(--cinza);
+  line-height: 1.6;
+}
+
+.diag-editable {
+  background: transparent;
+  border: 1px dashed rgba(145,106,65,0.3);
+  color: var(--cinza);
+  font-family: inherit;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  width: 100%;
+  min-height: 60px;
+  padding: 8px;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.diag-editable:focus {
+  outline: none;
+  border-color: var(--bronze);
+  color: var(--offwhite);
+}
+
+/* ── PLANOS ── */
+.planos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.plano-card {
+  background: var(--carvao);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.plano-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(145,106,65,0.25);
+}
+
+.plano-card.destaque {
+  border: 2px solid var(--bronze);
+  background: linear-gradient(180deg, rgba(145,106,65,0.08) 0%, var(--carvao) 40%);
+}
+
+.plano-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bronze);
+  color: var(--preto);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  border-radius: 20px;
+}
+
+.plano-nome {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 4px;
+}
+
+.plano-subtitulo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--offwhite);
+  margin-bottom: 20px;
+}
+
+.plano-preco {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.preco-valor {
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--offwhite);
+}
+
+.preco-periodo {
+  font-size: 0.85rem;
+  color: var(--cinza);
+  margin-left: 4px;
+}
+
+.preco-nota {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--cinza);
+  margin-top: 4px;
+}
+
+.plano-publico {
+  font-size: 0.8rem;
+  color: var(--cinza);
+  margin-bottom: 20px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 6px;
+}
+
+.plano-publico strong { color: var(--offwhite); font-weight: 500; }
+
+.plano-lista {
+  list-style: none;
+  flex: 1;
+  margin-bottom: 24px;
+}
+
+.plano-lista li {
+  font-size: 0.85rem;
+  color: var(--offwhite);
+  opacity: 0.8;
+  padding: 6px 0;
+  padding-left: 22px;
+  position: relative;
+}
+
+.plano-lista li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bronze);
+  opacity: 0.6;
+}
+
+.plano-nao-inclui {
+  font-size: 0.75rem;
+  color: var(--cinza);
+  font-style: italic;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.plano-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  margin-top: auto;
+}
+
+.plano-btn-outline {
+  background: transparent;
+  border: 1px solid rgba(145,106,65,0.4);
+  color: var(--bronze);
+}
+
+.plano-btn-outline:hover {
+  background: rgba(145,106,65,0.1);
+  border-color: var(--bronze);
+}
+
+.plano-btn-solid {
+  background: var(--bronze);
+  color: var(--preto);
+}
+
+.plano-btn-solid:hover {
+  background: var(--bronze-light);
+}
+
+/* ── PERFORMANCE ── */
+.performance-box {
+  background: linear-gradient(135deg, var(--carvao) 0%, rgba(38,51,38,0.3) 100%);
+  border: 1px solid rgba(145,106,65,0.2);
+  border-radius: 12px;
+  padding: 48px;
+  margin-top: 48px;
+}
+
+.performance-box h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: var(--offwhite);
+  margin-bottom: 8px;
+}
+
+.performance-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  border: 1px solid var(--bronze);
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.performance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.performance-item h4 {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 8px;
+}
+
+.performance-item p {
+  font-size: 0.9rem;
+  color: var(--offwhite);
+  opacity: 0.8;
+}
+
+/* ── NÃO INCLUSO ── */
+.exclusoes {
+  margin-top: 48px;
+  padding: 32px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 8px;
+}
+
+.exclusoes h3 {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cinza);
+  margin-bottom: 16px;
+}
+
+.exclusoes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 32px;
+}
+
+.exclusoes-grid li {
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--cinza);
+  padding: 4px 0 4px 20px;
+  position: relative;
+}
+
+.exclusoes-grid li::before {
+  content: '\2013';
+  position: absolute;
+  left: 0;
+  color: rgba(255,255,255,0.15);
+}
+
+/* ── CONDIÇÕES ── */
+.condicoes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.condicao-card {
+  background: var(--carvao);
+  border-radius: 8px;
+  padding: 28px 24px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+.condicao-card h3 {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 12px;
+}
+
+.condicao-card p {
+  font-size: 0.88rem;
+  color: var(--offwhite);
+  opacity: 0.8;
+}
+
+/* ── CTA ── */
+.cta-section {
+  text-align: center;
+  padding: 80px 0;
+}
+
+.cta-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  color: var(--offwhite);
+  margin-bottom: 16px;
+}
+
+.cta-subtitle {
+  font-size: 0.95rem;
+  color: var(--cinza);
+  margin-bottom: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bronze);
+  color: var(--preto);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 40px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.btn-whatsapp:hover {
+  background: var(--bronze-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(145,106,65,0.3);
+}
+
+.btn-whatsapp svg { width: 20px; height: 20px; }
+
+.cta-email {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--cinza);
+}
+
+.cta-email a { color: var(--bronze); text-decoration: none; }
+
+/* ── RODAPÉ ── */
+.rodape {
+  border-top: 1px solid rgba(145,106,65,0.12);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.rodape-brand {
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--offwhite);
+  margin-bottom: 12px;
+}
+
+.rodape-info {
+  font-size: 0.75rem;
+  color: var(--cinza);
+  line-height: 1.8;
+}
+
+.rodape-validade {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 6px 16px;
+  border: 1px solid rgba(145,106,65,0.3);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bronze);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  section { padding: 48px 0; }
+  .sobre-grid { grid-template-columns: 1fr; gap: 32px; }
+  .diag-cards { grid-template-columns: 1fr; }
+  .planos-grid { grid-template-columns: 1fr; gap: 20px; }
+  .performance-grid { grid-template-columns: 1fr; }
+  .performance-box { padding: 28px 20px; }
+  .condicoes-grid { grid-template-columns: 1fr; }
+  .exclusoes-grid { grid-template-columns: 1fr; }
+  .capa-meta { flex-direction: column; gap: 16px; align-items: center; }
+  .nav-bar .container { gap: 20px; }
+}
+
+@media print {
+  .nav-bar { display: none; }
+  body { background: #fff; color: #222; }
+  section { border-top: 1px solid #ddd; }
+  .capa { min-height: auto; padding: 60px 0; }
+  .capa::before { display: none; }
+  .plano-card { break-inside: avoid; }
+  .plano-card.destaque { border-color: #916A41; }
+}
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<header class="capa">
+  <div class="capa-logo">NAKA Digital</div>
+  <h1>Proposta Comercial<br><em>Gestao de Redes Sociais</em></h1>
+  <p class="capa-subtitle">Estrategia &bull; Conteudo &bull; Posicionamento</p>
+  <div class="capa-divider"></div>
+  <p class="capa-cliente">[NOME DO CLIENTE]</p>
+  <p class="capa-segmento">[Segmento de atuacao]</p>
+  <div style="height: 40px;"></div>
+  <div class="capa-meta">
+    <span>Data de emissao<br><strong id="dataEmissao"></strong></span>
+    <span>Validade<br><strong id="dataValidade"></strong></span>
+    <span>Responsavel<br><strong>Tiemi Nakayama</strong></span>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="container">
+    <a href="#" class="nav-brand">NAKA</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#diagnostico">Diagnostico</a>
+    <a href="#planos">Planos</a>
+    <a href="#condicoes">Condicoes</a>
+    <a href="#contato">Contato</a>
+  </div>
+</nav>
+
+<!-- QUEM SOMOS -->
+<section id="sobre">
+  <div class="container">
+    <p class="section-label">01 &mdash; Quem Somos</p>
+    <h2 class="section-title">Presenca digital nao comeca na<br>quantidade de posts. <em>Comeca na clareza.</em></h2>
+    <div class="sobre-grid">
+      <div class="sobre-texto">
+        <p>A NAKA Digital e uma agencia boutique de estrategia de marca, conteudo e posicionamento digital para profissionais de beleza, estetica e harmonizacao orofacial.</p>
+        <p>Trabalhamos com marcas que querem construir presenca digital com consistencia e estrategia &mdash; nao apenas posts bonitos. Cada cliente recebe um projeto sob medida, com direcao estetica editorial e foco comercial.</p>
+        <p>Atuamos em Aguas Claras, DF e entorno, com modelo remoto + captacao presencial in loco.</p>
+      </div>
+      <div class="sobre-stats">
+        <div class="stat-item">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Projetos personalizados</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">Beleza</div>
+          <div class="stat-label">Nicho especializado</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">DF</div>
+          <div class="stat-label">Aguas Claras e entorno</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section id="diagnostico">
+  <div class="container">
+    <p class="section-label">02 &mdash; Diagnostico</p>
+    <h2 class="section-title">O que <em>identificamos</em></h2>
+    <div class="diag-cards">
+      <div class="diag-card">
+        <div class="diag-card-icon">&#9678;</div>
+        <h3>Situacao Atual</h3>
+        <textarea class="diag-editable" placeholder="Descreva como o cliente esta hoje nas redes sociais..."></textarea>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-icon">&#9888;</div>
+        <h3>Principais Desafios</h3>
+        <textarea class="diag-editable" placeholder="Quais problemas estao travando o crescimento..."></textarea>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-icon">&#10024;</div>
+        <h3>Oportunidade Identificada</h3>
+        <textarea class="diag-editable" placeholder="O que a NAKA enxerga de potencial para este cliente..."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJETIVO -->
+<section>
+  <div class="container">
+    <p class="section-label">03 &mdash; Objetivo</p>
+    <h2 class="section-title">Transformar autoridade tecnica<br>em <em>desejo e agenda cheia</em></h2>
+    <p style="font-size: 0.95rem; color: var(--cinza); max-width: 700px;">
+      Estruturar o posicionamento, a estetica e a aquisicao digital do seu negocio, criando uma presenca que comunica o real valor do seu trabalho &mdash; e converte seguidores em clientes qualificados.
+    </p>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos">
+  <div class="container">
+    <p class="section-label">04 &mdash; Investimento</p>
+    <h2 class="section-title">Escolha o plano ideal<br>para o seu <em>momento</em></h2>
+
+    <div class="planos-grid">
+
+      <!-- ESSENCIAL -->
+      <div class="plano-card">
+        <p class="plano-nome">Plano 1</p>
+        <h3 class="plano-subtitulo">Essencial</h3>
+        <p style="font-size: 0.75rem; color: var(--cinza); margin-bottom: 16px; font-style: italic;">Direcao e Identidade</p>
+        <div class="plano-preco">
+          <span class="preco-valor">R$ 950</span>
+          <span class="preco-periodo">/mes</span>
+        </div>
+        <div class="plano-publico"><strong>Para quem:</strong> Profissionais autonomas que gravam o proprio material bruto.</div>
+        <ul class="plano-lista">
+          <li>Diagnostico inicial de perfil + ajustes de Bio e Destaques</li>
+          <li>Calendario editorial estrategico</li>
+          <li>12 conteudos/mes (8 estaticos/carrosseis + 4 Reels)</li>
+          <li>Roteiros detalhados para a cliente gravar</li>
+          <li>Edicao profissional dos videos + design e legendas</li>
+          <li>Agendamento das publicacoes</li>
+        </ul>
+        <p class="plano-nao-inclui">Nao inclui: Captacao presencial e gestao de trafego pago.</p>
+        <div style="height: 20px;"></div>
+        <a href="#contato" class="plano-btn plano-btn-outline">Quero este plano</a>
+      </div>
+
+      <!-- POSICIONAMENTO -->
+      <div class="plano-card destaque">
+        <div class="plano-badge">Recomendado</div>
+        <p class="plano-nome">Plano 2</p>
+        <h3 class="plano-subtitulo">Posicionamento</h3>
+        <p style="font-size: 0.75rem; color: var(--cinza); margin-bottom: 16px; font-style: italic;">Presenca e Captacao</p>
+        <div class="plano-preco">
+          <span class="preco-valor">R$ 1.650</span>
+          <span class="preco-periodo">/mes</span>
+        </div>
+        <div class="plano-publico"><strong>Para quem:</strong> Saloes de beleza e profissionais de estetica.</div>
+        <ul class="plano-lista">
+          <li>Tudo do Plano Essencial</li>
+          <li>16 conteudos/mes (8 estaticos/carrosseis + 8 Reels)</li>
+          <li>1 visita mensal de captacao presencial (ate 2h30)</li>
+          <li>Roteiro pre-aprovado para cada captacao</li>
+          <li>Direcionamento estrategico semanal de Stories</li>
+          <li>Roteiro de bastidores e prova social</li>
+        </ul>
+        <p class="plano-nao-inclui">Nao inclui: Gestao de trafego pago.</p>
+        <div style="height: 20px;"></div>
+        <a href="#contato" class="plano-btn plano-btn-solid">Quero este plano</a>
+      </div>
+
+      <!-- ESTRUTURA -->
+      <div class="plano-card">
+        <p class="plano-nome">Plano 3</p>
+        <h3 class="plano-subtitulo">Estrutura</h3>
+        <p style="font-size: 0.75rem; color: var(--cinza); margin-bottom: 16px; font-style: italic;">Autoridade + Aquisicao</p>
+        <div class="plano-preco">
+          <span class="preco-valor">R$ 2.800</span>
+          <span class="preco-periodo">/mes</span>
+          <span class="preco-nota">+ verba de anuncios paga diretamente pela cliente</span>
+        </div>
+        <div class="plano-publico"><strong>Para quem:</strong> Clinicas de HOF, estetica avancada e saloes estruturados.</div>
+        <ul class="plano-lista">
+          <li>Posicionamento completo</li>
+          <li>20 conteudos/mes (10 estaticos/carrosseis + 10 Reels)</li>
+          <li>2 visitas mensais de captacao presencial (2h cada)</li>
+          <li>Foco em autoridade clinica e experiencia do paciente</li>
+          <li>Gestao de Trafego Pago (Meta Ads)</li>
+          <li>Campanhas de geracao de leads WhatsApp/agendamento</li>
+          <li>Reuniao mensal + relatorio de metricas</li>
+        </ul>
+        <p class="plano-nao-inclui">Verba de anuncios nao inclusa no investimento.</p>
+        <div style="height: 20px;"></div>
+        <a href="#contato" class="plano-btn plano-btn-outline">Quero este plano</a>
+      </div>
+    </div>
+
+    <!-- PERFORMANCE -->
+    <div class="performance-box">
+      <span class="performance-tag">Modelo Especial</span>
+      <h3>Parceria de Performance</h3>
+      <p style="font-size: 0.9rem; color: var(--cinza); margin-top: 8px;">Para clinicas de HOF que querem dividir o risco e crescer juntas.</p>
+      <div class="performance-grid">
+        <div class="performance-item">
+          <h4>Estrutura</h4>
+          <p>Fee operacional fixo de <strong style="color: var(--bronze);">R$ 900/mes</strong> (deslocamento, edicao e gestao) + <strong style="color: var(--bronze);">10% de comissao</strong> sobre o faturamento bruto dos procedimentos fechados via canais digitais geridos pela NAKA.</p>
+        </div>
+        <div class="performance-item">
+          <h4>Controle</h4>
+          <p>Link de WhatsApp rastreavel ou CRM simples (planilha compartilhada) onde a recepcao registra todos os leads vindos do Instagram e anuncios. Transparencia total.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NÃO INCLUSO GERAL -->
+    <div class="exclusoes">
+      <h3>O que nao esta incluso em nenhum plano</h3>
+      <ul class="exclusoes-grid">
+        <li>Verba de impulsionamento / trafego pago (exceto Plano 3)</li>
+        <li>Criacao de site ou landing pages</li>
+        <li>Atendimento ao cliente fora das redes sociais</li>
+        <li>Criacao de identidade visual / branding</li>
+        <li>Gestao de crise de imagem</li>
+        <li>Posts ou conteudos adicionais alem do escopo contratado</li>
+        <li>Producao de material grafico para impressao</li>
+        <li>Gestao de outras plataformas nao especificadas</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONDIÇÕES -->
+<section id="condicoes">
+  <div class="container">
+    <p class="section-label">05 &mdash; Condicoes</p>
+    <h2 class="section-title">Termos e <em>condic&otilde;es</em></h2>
+    <div class="condicoes-grid">
+      <div class="condicao-card">
+        <h3>Prazo Minimo</h3>
+        <p>Contrato com duracao minima de <strong>6 meses</strong>. O prazo permite que a estrategia amadureca e gere resultados consistentes.</p>
+      </div>
+      <div class="condicao-card">
+        <h3>Pagamento</h3>
+        <p>Vencimento no dia <strong>5 de cada mes</strong>, antecipado. Pagamento via PIX ou transferencia bancaria. Primeiro mes proporcional ao inicio.</p>
+      </div>
+      <div class="condicao-card">
+        <h3>Rescisao</h3>
+        <p>Aviso previo de <strong>30 dias corridos</strong> por escrito. Multa rescisoria de 20% sobre os meses restantes em caso de rescisao antecipada.</p>
+      </div>
+      <div class="condicao-card">
+        <h3>Reajuste Anual</h3>
+        <p>O contrato sera reajustado anualmente pelo <strong>IPCA acumulado</strong> do periodo ou 10% fixo, prevalecendo o maior.</p>
+      </div>
+      <div class="condicao-card">
+        <h3>Aprovacao de Conteudo</h3>
+        <p>Ate <strong>2 rodadas de ajustes</strong> por peca inclusos no escopo. Conteudo nao aprovado em 48h sera publicado conforme planejado.</p>
+      </div>
+      <div class="condicao-card">
+        <h3>Confidencialidade</h3>
+        <p>Todos os dados, estrategias e informacoes do cliente sao tratados com <strong>total sigilo</strong>. A NAKA retem direito de portfolio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contato" class="cta-section">
+  <div class="container">
+    <p class="section-label">Proximos Passos</p>
+    <h2 class="cta-title">Vamos comecar?</h2>
+    <p class="cta-subtitle">Responda este e-mail ou nos chame no WhatsApp para confirmar sua aprovacao. Apos confirmacao, enviaremos o contrato e o questionario de onboarding.</p>
+    <a href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%20Tiemi%2C%20quero%20aprovar%20a%20proposta%20da%20NAKA!" class="btn-whatsapp" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Aprovar pelo WhatsApp
+    </a>
+    <p class="cta-email">Ou envie um e-mail para <a href="mailto:nakagestaoderedes@gmail.com">nakagestaoderedes@gmail.com</a></p>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="rodape">
+  <div class="container">
+    <p class="rodape-brand">NAKA Digital</p>
+    <p class="rodape-info">
+      Estrategia &bull; Conteudo &bull; Posicionamento<br>
+      Aguas Claras, DF &bull; @nakadigital_<br>
+      nakagestaoderedes@gmail.com
+    </p>
+    <p class="rodape-validade" id="validadeRodape"></p>
+  </div>
+</footer>
+
+<script>
+const hoje = new Date();
+const validade = new Date(hoje);
+validade.setDate(validade.getDate() + 15);
+
+function formatDate(d) {
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+}
+
+document.getElementById('dataEmissao').textContent = formatDate(hoje);
+document.getElementById('dataValidade').textContent = formatDate(validade);
+document.getElementById('validadeRodape').textContent = 'Proposta valida ate ' + formatDate(validade);
+
+document.querySelectorAll('.nav-bar a:not(.nav-brand)').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
