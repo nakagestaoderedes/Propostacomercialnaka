@@ -179,10 +179,15 @@ section{padding:130px 0}
 .sim .out div{border-top:1px solid var(--line);padding-top:10px}
 .sim .out span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);display:block}
 .sim .out b{font-family:var(--display);font-size:24px;font-weight:600;color:var(--marfim)}
-.sim .fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 4px}
+.sim .fields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:6px 0 4px}
 .sim .fields label{margin:6px 0 0}
-.sim input[type=number]{display:block;width:100%;margin-top:6px;background:rgba(244,241,237,.06);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--offwhite);font:600 16px var(--body)}
+.sim .fields input{min-width:0;display:block;width:100%;margin-top:6px;background:rgba(244,241,237,.06);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--offwhite);font:600 16px var(--body)}
 .sim .ex{font-size:13px;color:rgba(244,241,237,.8);margin-top:12px;padding:10px 12px;border-left:1px solid var(--marfim)}
+.sim .qty{display:flex;gap:8px;align-items:stretch}
+.sim .qty input{flex:1;min-width:0;width:100%;text-align:center;margin-top:0!important;display:block;background:rgba(244,241,237,.06);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--offwhite);font:600 16px var(--body)}
+.sim .qty button{width:48px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--marfim);font-size:22px;cursor:pointer}
+.sim .qty button:active{background:var(--marfim);color:var(--leather)}
+.sim .calc{margin-top:12px;width:100%;border:0;border-radius:99px;padding:12px;background:var(--marfim);color:var(--leather);font:700 11.5px var(--body);letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
 .sim .note{font-size:11.5px;color:var(--taupe);margin-top:12px}
 
 /* método */
@@ -236,7 +241,7 @@ footer p{font-size:12px;color:var(--taupe);letter-spacing:.06em}
   .perf,.cta{padding:60px 24px}
   .plan{padding:34px 22px 24px}
   .pill.hide-sm{display:none}
-  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-grid,.perf-in{grid-template-columns:minmax(0,1fr)}
   .hero h1{font-size:11vw}
   .eq{flex-direction:column}.eq .op{align-self:flex-start}
   .price b{font-size:48px}.plan h3{font-size:34px}
@@ -445,11 +450,16 @@ footer p{font-size:12px;color:var(--taupe);letter-spacing:.06em}
           <div class="rule sim">
             <small>Simulação ilustrativa</small>
             <div class="fields">
-              <label>Valor do procedimento<input type="number" id="pv" value="800" min="0" step="50"></label>
-              <label>Custos do procedimento<input type="number" id="pc" value="400" min="0" step="50"></label>
+              <label>Valor do procedimento (R$)<input type="text" inputmode="decimal" autocomplete="off" id="pv" value="800"></label>
+              <label>Custos do procedimento (R$)<input type="text" inputmode="decimal" autocomplete="off" id="pc" value="400"></label>
             </div>
-            <label for="pq">Procedimentos fechados no mês via NAKA: <b id="pqv" style="color:var(--marfim)"></b></label>
-            <input type="range" id="pq" min="1" max="60" step="1" value="10">
+            <label for="pq">Procedimentos fechados no mês via NAKA</label>
+            <div class="qty">
+              <button type="button" id="qm" aria-label="Diminuir">−</button>
+              <input type="text" inputmode="numeric" autocomplete="off" id="pq" value="10" aria-label="Quantidade de procedimentos">
+              <button type="button" id="qp" aria-label="Aumentar">+</button>
+            </div>
+            <button type="button" class="calc" id="calc">Calcular</button>
             <p class="ex" id="ex"></p>
             <div class="out">
               <div><span>Fee fixo</span><b>R$ 900</b></div>
@@ -569,14 +579,30 @@ document.querySelectorAll('[data-plan]').forEach(b=>b.addEventListener('click',(
 client.addEventListener('input',updateWa); updateWa();
 
 /* simulador da parceria */
-const brl=v=>'R$ '+v.toLocaleString('pt-BR');
-const $=id=>document.getElementById(id);
-function sim(){const v=Math.max(0,+$('pv').value||0),c=Math.max(0,+$('pc').value||0),q=+$('pq').value;
-  const lucro=Math.max(0,v-c),porProc=lucro*.10,com=Math.round(porProc*q);
-  $('pqv').textContent=q;
-  $('ex').textContent=`${brl(v)} − ${brl(c)} de custos = ${brl(lucro)} de lucro por procedimento → NAKA recebe ${brl(Math.round(porProc*100)/100)} (10%) por procedimento.`;
-  $('com').textContent=brl(com);$('tot').textContent=brl(com+900);}
-['pv','pc','pq'].forEach(i=>$(i).addEventListener('input',sim)); sim();
+function brl(v){try{return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',minimumFractionDigits:v%1?2:0,maximumFractionDigits:2})}catch(e){return 'R$ '+(Math.round(v*100)/100).toFixed(v%1?2:0).replace('.',',')}}
+/* lê valores no formato brasileiro: "1.500", "800,50", "R$ 1.500,00" */
+function num(str){
+  var t=String(str||'').replace(/[^0-9.,]/g,'');
+  if(!t) return 0;
+  if(t.indexOf(',')>-1){t=t.replace(/\./g,'').replace(',','.');}
+  else if(/^\d{1,3}(\.\d{3})+$/.test(t)){t=t.replace(/\./g,'');}
+  var n=parseFloat(t); return isFinite(n)&&n>0?n:0;
+}
+function $(id){return document.getElementById(id)}
+function sim(){
+  try{
+    var v=num($('pv').value),c=num($('pc').value),q=Math.round(num($('pq').value));
+    var lucro=Math.max(0,v-c),porProc=lucro*0.10,com=Math.round(porProc*q*100)/100;
+    $('ex').textContent=brl(v)+' − '+brl(c)+' de custos = '+brl(lucro)+' de lucro por procedimento → NAKA recebe '+brl(Math.round(porProc*100)/100)+' (10%) por procedimento × '+q+' = '+brl(com)+'.';
+    $('com').textContent=brl(com);$('tot').textContent=brl(com+900);
+  }catch(e){}
+}
+function step(d){var q=Math.round(num($('pq').value))+d;if(q<0)q=0;$('pq').value=q;sim();}
+['pv','pc','pq'].forEach(function(i){['input','change','keyup','blur'].forEach(function(ev){$(i).addEventListener(ev,sim)})});
+$('qm').addEventListener('click',function(){step(-1)});
+$('qp').addEventListener('click',function(){step(1)});
+$('calc').addEventListener('click',sim);
+sim();
 
 /* reveal on scroll */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
